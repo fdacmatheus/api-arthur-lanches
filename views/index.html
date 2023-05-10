@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API de Produtos - Arthur Lanches</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>Documentação da API de Produtos</h1>
+    <p>Esta é a documentação da API para cadastrar e listar produtos.</p>
+
+    <h2>Endpoints:</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Endpoint</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GET /produtos</td>
+          <td>Retorna todos os produtos cadastrados.</td>
+        </tr>
+        <tr>
+          <td>GET /produtos/{id}</td>
+          <td>Retorna os detalhes de um produto específico com base no seu ID.</td>
+        </tr>
+        <tr>
+          <td>POST /produtos</td>
+          <td>Cadastra um novo produto.</td>
+        </tr>
+        <tr>
+          <td>PUT /produtos/{id}</td>
+          <td>Atualiza as informações de um produto específico com base no seu ID.</td>
+        </tr>
+        <tr>
+          <td>DELETE /produtos/{id}</td>
+          <td>Remove um produto específico com base no seu ID.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Exemplos de Uso:</h2>
+
+    <h3>Ver Todos os Produtos</h3>
+    <p>Para ver todos os produtos cadastrados, faça uma requisição GET para <code>/produtos</code>.</p>
+
+    <h3>Ver Detalhes de um Produto</h3>
+    <p>Para ver os detalhes de um produto específico, faça uma requisição GET para <code>/produtos/{id}</code>, substituindo <code>{id}</code> pelo ID do produto desejado.</p>
+
+    <h3>Cadastrar um Produto</h3>
+    <p>Para cadastrar um novo produto, faça uma requisição POST para <code>/produtos</code> com os dados do produto no corpo da requisição.</p>
+
+    <h3>Atualizar um Produto</h3>
+    <p>Para atualizar as informações de um produto existente, faça uma requisição PUT para <code>/produtos/{id}</code>, substituindo <code>{id}</code> pelo ID do produto a ser atualizado, e inclua os novos dados do produto no corpo da requisição.</p>
+
+    <h3>Remover um Produto</h3>
+    <p>Para remover um produto existente, faça uma requisição DELETE para <code>/produtos/{id}</code>, substituindo <code>{id}</code> pelo ID do produto a ser removido.</p>
+    <a href="/lista-produtos" class="btn btn-primary mb-5">Ver Todos os Produtos</a>
+    <a href="/cadastro" class="btn btn-success mb-5">Cadastrar Produto</a>
+  </div>
+  
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

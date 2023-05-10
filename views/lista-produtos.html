@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Produtos</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+     h1 {
+      font-family: 'Berkshire Swash', cursive;
+    }
+    .card {
+      width: 18rem;
+      margin-bottom: 20px;
+    }
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="container">
+    <h1 class="text-center my-5">Produtos Cadastrados</h1>
+    <div class="row">
+      <div v-for="produto in produtos" :key="produto.id" class="col-md-4">
+        <div class="card">
+          <img :src="getImagemUrl(produto.imagem)" alt="Imagem do produto" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">{{ produto.nome }}</h5>
+            <p class="card-text">{{ produto.descricao }}</p>
+            <p class="card-text">Preço: R$ {{ produto.preco }}</p>
+            <button class="btn btn-danger" @click="excluirProduto(produto.id)">Apagar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        produtos: [] // Array de produtos
+      },
+      created() {
+        // Função para buscar os produtos
+        this.getProdutos();
+      },
+      methods: {
+        getProdutos() {
+          fetch('/produtos')
+            .then(response => response.json())
+            .then(data => {
+              this.produtos = data.produtos;
+            })
+            .catch(error => {
+              console.error(error);
+            });
+        },
+        excluirProduto(produtoId) {
+          fetch(`/produtos/${produtoId}`, { method: 'DELETE' })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data.message);
+              // Atualizar a lista de produtos após a exclusão
+              this.getProdutos();
+            })
+            .catch(error => {
+              console.error(error);
+            });
+        },
+        getImagemUrl(imagem) {
+          if (!imagem) {
+            // Retorna uma URL de imagem padrão caso não haja imagem definida
+            return 'https://via.placeholder.com/200x200';
+          }
+          
+          // Retorna a URL completa da imagem
+          return 'uploads/' + imagem;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
